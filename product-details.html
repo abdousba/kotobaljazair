@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الكتاب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0f0f0;
+            color: #000;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header .logo h1 {
+            font-size: 36px;
+            color: #0000f;
+        }
+
+        .product-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .product-image {
+            width: 48%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-info {
+            width: 48%;
+        }
+
+        .product-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-info .price {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #1e90ff;
+        }
+
+        .product-info p {
+            margin-bottom: 10px;
+        }
+
+        .rating-stars {
+            margin: 15px 0;
+        }
+
+        #stars {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .product-info button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product-info button:hover {
+            background-color: #007acc;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            background-color: #ddd;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        .back-button:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>كتب الجزائر</h1>
+        </div>
+    </header>
+
+    <div class="product-detail">
+        <img src="https://i.imgur.com/MUvJ1Z4.jpeg" alt="كتاب 1" class="product-image">
+        <div class="product-info">
+            <h2>عنوان الكتاب</h2>
+            <p class="price">2500 دج</p>
+            <p><strong>المخزون:</strong> متوفر</p>
+            <p><strong>عدد الصفحات:</strong> 576</p>
+            <p><strong>عدد المجلدات:</strong> 1</p>
+            <p><strong>نوع التجليد:</strong> فني</p>
+            <p><strong>تاريخ النشر:</strong> 2024-10-04</p>
+            <p><strong>الورق:</strong> شاموا - لونان</p>
+            <p><strong>المقاس:</strong> 17/24</p>
+
+            <!-- تقييم النجوم -->
+            <div class="rating-stars">
+                <label>التقييم:</label>
+                <div id="stars">
+                    <span data-value="1">&#9733;</span>
+                    <span data-value="2">&#9733;</span>
+                    <span data-value="3">&#9733;</span>
+                    <span data-value="4">&#9733;</span>
+                    <span data-value="5">&#9733;</span>
+                </div>
+            </div>
+
+            <!-- التعليقات -->
+            <div class="comment-section">
+                <label for="comment">كتابة تعليق:</label>
+                <textarea id="comment" rows="4" style="width: 100%; padding: 10px;"></textarea>
+                <button>أضف تعليق</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="index.html" class="back-button">الرجوع للصفحة السابقة</a>
+    </footer>
+
+    <script>
+        const stars = document.querySelectorAll('#stars span');
+        let selectedRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-value'));
+                highlightStars(selectedRating);
+                alert(`تم التقييم بـ ${selectedRating} نجوم`);
+            });
+
+            star.addEventListener('mouseover', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                highlightStars(value);
+            });
+
+            star.addEventListener('mouseout', () => {
+                highlightStars(selectedRating);
+            });
+        });
+
+        function highlightStars(rating) {
+            stars.forEach(star => {
+                const value = parseInt(star.getAttribute('data-value'));
+                star.style.color = value <= rating ? '#FFD700' : '#ddd';
+            });
+        }
+    </script>
+
+</body>
+</html>
